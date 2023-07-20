@@ -8,8 +8,9 @@ async function teardown(opts: any) {
     return;
   }
 
-  const allStartedContainers: StartedContainerAndMetaInfo[] = (global as any)
-    .__TESTCONTAINERS__;
+  const allStartedContainers: StartedContainerAndMetaInfo[] = (
+    (global as any).__TESTCONTAINERS__ ?? []
+  );
 
   await Promise.all(
     allStartedContainers.map((container: any) => container.stop())
